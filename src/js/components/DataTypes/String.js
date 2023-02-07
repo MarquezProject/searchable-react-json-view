@@ -62,10 +62,13 @@ export default class extends React.PureComponent {
 
     getValue = (value) => {
         let colorLink = Theme(this.props.theme, 'link').style.color;
-        if(this.isLink(value)) {
+        if(typeof value === "string" && this.isLink(value)) {
             return <a href={value} style={{ cursor: 'pointer', color: colorLink }} rel="noopener noreferrer" target="_blank">{value}</a>
+        } else if (typeof value === "string") {
+            return `"${value}"`
+        } else {
+            return value
         }
-        return `"${value}"`
     }
 
     render() {
@@ -83,8 +86,7 @@ export default class extends React.PureComponent {
         }
 
         if (collapsible && value.length > collapseStringsAfterLength) {
-            this.style.cursor = 'pointer';
-            if (this.state.collapsed) {
+            if (this.state.collapsed && !this.isLink(value)) {
                 value = (
                     <span>
                         {value.substring(0, collapseStringsAfterLength)}

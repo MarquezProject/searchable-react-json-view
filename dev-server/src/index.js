@@ -10,7 +10,7 @@ import Moment from "moment"
 import JsonViewer from "./../../src/js/index"
 
 const App = () => {
-    const [search, setSearch] = React.useState('IS A')
+    const [search, setSearch] = React.useState('')
 
     return <div>
         Search: <input value={search} onChange={e => setSearch(e.target.value)} />
@@ -77,6 +77,7 @@ function getExampleJson1() {
             sibling2: false,
             sibling3: null,
         },
+        link: "http://translate.google.com/",
         string_number: "1234",
         moment: {
             a: 'shlomi',
